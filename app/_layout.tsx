@@ -1,24 +1,30 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
-
-import { useColorScheme } from '@/hooks/use-color-scheme';
-
-export const unstable_settings = {
-  anchor: '(tabs)',
-};
+import { useEffect } from 'react';
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
+  const [fontsLoaded] = useFonts({
+    Thin: require('@/assets/fonts/Urbanist-Thin.ttf'),
+    ExtraLight: require('@/assets/fonts/Urbanist-ExtraLight.ttf'),
+    Light: require('@/assets/fonts/Urbanist-Light.ttf'),
+    Regular: require('@/assets/fonts/Urbanist-Regular.ttf'),
+    Medium: require('@/assets/fonts/Urbanist-Medium.ttf'),
+    SemiBold: require('@/assets/fonts/Urbanist-SemiBold.ttf'),
+    Bold: require('@/assets/fonts/Urbanist-Bold.ttf'),
+    ExtraBold: require('@/assets/fonts/Urbanist-ExtraBold.ttf'),
+    Black: require('@/assets/fonts/Urbanist-Black.ttf'),
+  });
 
+  useEffect(() => {
+    if (fontsLoaded) {
+      console.log('All fonts loaded');
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) return null;
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="index" />
+    </Stack>
   );
 }
