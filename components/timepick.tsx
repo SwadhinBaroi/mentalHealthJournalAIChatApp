@@ -1,6 +1,8 @@
+import { Colors } from '@/constants/color';
 import React, { useState } from 'react';
-import { Button, View } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import { RNText } from './ui/input';
 
 const TimePick = ({ onChange }) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
@@ -32,8 +34,22 @@ const TimePick = ({ onChange }) => {
   };
 
   return (
-    <View>
-      <Button title="Show Date Picker" onPress={showDatePicker} />
+    <TouchableOpacity
+      style={{
+        borderWidth: 1,
+        borderColor: Colors.green,
+        paddingVertical: 10,
+        backgroundColor: Colors.green,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 50,
+      }}
+      onPress={showDatePicker}
+    >
+      <RNText variant="header" size="lg" style={{ color: Colors.white }}>
+        Pick the time
+      </RNText>
+
       <DateTimePickerModal
         isVisible={isDatePickerVisible}
         mode="time"
@@ -43,7 +59,7 @@ const TimePick = ({ onChange }) => {
           alignItems: 'center',
         }}
       />
-    </View>
+    </TouchableOpacity>
   );
 };
 
