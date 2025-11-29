@@ -43,10 +43,21 @@ const TimePick = ({ onChange }) => {
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 50,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 4,
       }}
       onPress={showDatePicker}
     >
-      <RNText variant="header" size="lg" style={{ color: Colors.white }}>
+      <RNText
+        variant="header"
+        size="lg"
+        style={{
+          color: Colors.white,
+        }}
+      >
         Pick the time
       </RNText>
 

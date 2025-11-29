@@ -50,7 +50,7 @@ const index = () => {
           }}
         >
           <TouchableOpacity
-            onPress={() => router.back()}
+            onPress={() => router.replace('/(tabs)/home')}
             style={{
               padding: 12,
               borderWidth: 1,
@@ -172,7 +172,7 @@ const index = () => {
             />
           </View>
           <TouchableOpacity
-            onPress={() => router.push('/chat/chatpage')}
+            onPress={() => router.push('/chatpages/chatpage')}
             style={{
               backgroundColor: Colors.green,
               alignSelf: 'flex-start',

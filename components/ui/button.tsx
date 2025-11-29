@@ -5,11 +5,28 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import { RNText } from './input';
 
-const RNButton = ({ path, value }: { path?: String; value: String }) => {
+const RNButton = ({
+  path,
+  value,
+  tag = 'push',
+}: {
+  path?: String;
+  value: String;
+  tag?: String;
+}) => {
   // console.log(path);
   return (
     <TouchableOpacity
-      onPress={() => router.push(path)}
+      onPress={() => {
+        console.log('tag:', tag);
+        if (tag === 'push') {
+          console.log('push the path');
+          router.push(path);
+        } else if (tag === 'replace') {
+          console.log('replace the path');
+          router.replace(path);
+        }
+      }}
       style={{
         backgroundColor: Colors.brown,
         flexDirection: 'row',

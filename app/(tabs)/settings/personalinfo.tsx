@@ -8,7 +8,6 @@ import DatePicker from '@/components/datepicker';
 import InputForm from '@/components/inputform';
 import RNButton from '@/components/ui/button';
 import { RNText } from '@/components/ui/input';
-import { RNSwitch } from '@/components/ui/switch';
 import { Colors } from '@/constants/color';
 import { router } from 'expo-router';
 import React, { useRef } from 'react';
@@ -32,34 +31,35 @@ const PersonalInfo = () => {
   } = useForm();
   const DatePickRef = useRef(null);
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'flex-start',
-          alignItems: 'center',
-          gap: 20,
-          marginLeft: 20,
-          marginTop: 20,
-        }}
-      >
-        <TouchableOpacity
-          onPress={() => router.back()}
+    <>
+      <SafeAreaView>
+        <View
           style={{
-            padding: 12,
-            borderWidth: 1,
-            borderColor: Colors.brown,
-            alignItems: 'flex-start',
-            borderRadius: 40,
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            gap: 20,
+            marginLeft: 20,
+            marginTop: 20,
           }}
         >
-          <Back />
-        </TouchableOpacity>
-        <RNText variant="title" size="xl">
-          Profile Setup
-        </RNText>
-      </View>
-
+          <TouchableOpacity
+            onPress={() => router.back()}
+            style={{
+              padding: 12,
+              borderWidth: 1,
+              borderColor: Colors.brown,
+              alignItems: 'flex-start',
+              borderRadius: 40,
+            }}
+          >
+            <Back />
+          </TouchableOpacity>
+          <RNText variant="title" size="xl">
+            Edit Personal Info
+          </RNText>
+        </View>
+      </SafeAreaView>
       <ScrollView>
         <View
           style={{
@@ -149,10 +149,6 @@ const PersonalInfo = () => {
                         }}
                       />
                     </TouchableOpacity>
-
-                    {/* {errors.dateOfBirth && (
-                        <RNText style={{ color: 'red' }}>{errors.dateOfBirth.message}</RNText>
-                      )} */}
                   </>
                 )}
               />
@@ -174,20 +170,24 @@ const PersonalInfo = () => {
               errors={{}}
               Icon={Location}
             />
-            <View style={{ marginTop: 10 }}>
+            {/* <View style={{ marginTop: 10 }}>
               <RNSwitch
                 value={false}
                 label={'Chatbot Notification'}
                 onToggle={() => console.log('hello')}
               />
-            </View>
+            </View> */}
           </View>
           <View style={{ width: '100%' }}>
-            <RNButton value={'Continue'} path={'/auth/picktime'} />
+            <RNButton
+              value={'Save'}
+              path={'/(tabs)/settings'}
+              tag={'replace'}
+            />
           </View>
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </>
   );
 };
 

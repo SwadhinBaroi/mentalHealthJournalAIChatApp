@@ -183,7 +183,11 @@ const ProfileSetUp = () => {
             </View>
           </View>
           <View style={{ width: '100%' }}>
-            <RNButton value={'Continue'} path={'/auth/picktime'} />
+            <RNButton
+              value={'Continue'}
+              path={'/auth/picktime'}
+              tag={'replace'}
+            />
           </View>
         </View>
       </ScrollView>
