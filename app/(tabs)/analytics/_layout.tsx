@@ -1,12 +1,8 @@
+import { Stack } from 'expo-router';
 import React from 'react';
-import { Text, View } from 'react-native';
 
 const AnalyticsLayout = () => {
-  return (
-    <View>
-      <Text>AnalyticsLayout</Text>
-    </View>
-  );
+  return <Stack screenOptions={{ headerShown: false }} />;
 };
 
 export default AnalyticsLayout;

@@ -1,11 +1,398 @@
+import Notification from '@/assets/svgs/notification.svg';
+import { RNText } from '@/components/ui/input';
+import { Colors } from '@/constants/color';
+import { Calendar, Flame, Heart, Smile, TrendingUp } from 'lucide-react-native';
+// import { Calendar, Flame } from 'lucide-react-native';
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { PieChart } from 'react-native-gifted-charts';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const index = () => {
+  const pieData = [
+    {
+      value: 30,
+      color: '#1E90FF', // Excellent (Blue)
+      gradientCenterColor: '#63B3FF',
+      text: 'Excellent',
+    },
+    {
+      value: 25,
+      color: '#4ADE80', // Happy (Green)
+      gradientCenterColor: '#9DF9B2',
+      text: 'Happy',
+    },
+    {
+      value: 20,
+      color: '#A78BFA', // Neutral (Purple)
+      gradientCenterColor: '#D4C5FF',
+      text: 'Neutral',
+    },
+    {
+      value: 15,
+      color: '#F87171', // Sad (Red)
+      gradientCenterColor: '#FFB4B4',
+      text: 'Sad',
+    },
+    {
+      value: 10,
+      color: '#FB923C', // Depressed (Orange)
+      gradientCenterColor: '#FFBC80',
+      text: 'Depressed',
+    },
+  ];
+
+  const centerText = {
+    value: '47%',
+    label: 'Excellent',
+  };
   return (
-    <View>
-      <Text>index</Text>
-    </View>
+    <>
+      <SafeAreaView
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          paddingHorizontal: 50,
+          paddingTop: 20,
+        }}
+      >
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            gap: 20,
+          }}
+        >
+          <RNText variant="title" size="xl">
+            Analytics
+          </RNText>
+        </View>
+        <TouchableOpacity
+          style={{
+            borderWidth: 1,
+            borderColor: Colors.brown,
+            padding: 12,
+            borderRadius: 30,
+          }}
+        >
+          <Notification />
+        </TouchableOpacity>
+      </SafeAreaView>
+      <ScrollView style={{ flex: 1, paddingTop: 10 }}>
+        <View
+          style={{
+            width: '90%',
+
+            marginHorizontal: 'auto',
+            backgroundColor: Colors.white,
+            flexDirection: 'row',
+            paddingHorizontal: 20,
+            paddingVertical: 30,
+            gap: 20,
+            alignItems: 'center',
+            borderRadius: 20,
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 3 },
+            shadowOpacity: 0.1,
+            shadowRadius: 2,
+            elevation: 3,
+          }}
+        >
+          <View
+            style={{
+              borderWidth: 1,
+              borderColor: Colors.green,
+              borderRadius: 150,
+              overflow: 'hidden',
+            }}
+          >
+            <Image
+              source={require('@/assets/images/person.jpg')}
+              style={{ height: 80, width: 80, overflow: 'hidden' }}
+            />
+          </View>
+          <View style={{ gap: 5 }}>
+            <RNText variant="header" size="2xl" style={{ color: Colors.brown }}>
+              Hi, Selena !
+            </RNText>
+            <View
+              style={{
+                flexDirection: 'row',
+                gap: 5,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <Calendar size={18} stroke={Colors.orange} />
+              <RNText
+                variant="medium"
+                size="md"
+                style={{ color: Colors.orange }}
+              >
+                Tue, 30 Feb 2026
+              </RNText>
+            </View>
+          </View>
+        </View>
+        <View
+          style={{ width: '90%', marginHorizontal: 'auto', marginVertical: 30 }}
+        >
+          <View style={{ gap: 10 }}>
+            <RNText variant="title" size="4xl">
+              Your Insights
+            </RNText>
+            <RNText variant="base" size="lg">
+              Track your emotinal wellness journey
+            </RNText>
+          </View>
+          <View style={{ marginVertical: 20, gap: 20 }}>
+            <View style={{ flexDirection: 'row', gap: 20 }}>
+              <View
+                style={{
+                  backgroundColor: Colors.white,
+                  flex: 1,
+                  padding: 20,
+                  borderRadius: 15,
+                  gap: 5,
+                  shadowColor: Colors.green,
+                  shadowOffset: { width: 0, height: 3 },
+                  shadowOpacity: 0.2,
+                  shadowRadius: 3,
+                  elevation: 4,
+                }}
+              >
+                <View
+                  style={{
+                    padding: 12,
+                    backgroundColor: '#FF8D28',
+                    alignSelf: 'flex-start',
+                    borderRadius: 12,
+                  }}
+                >
+                  <Calendar size={24} stroke={Colors.white} />
+                </View>
+                <RNText variant="title" size="lg">
+                  Total Entries
+                </RNText>
+                <RNText variant="header" size="3xl">
+                  45
+                </RNText>
+                <RNText>This Month</RNText>
+              </View>
+              <View
+                style={{
+                  backgroundColor: Colors.white,
+                  flex: 1,
+                  padding: 20,
+                  borderRadius: 15,
+                  gap: 5,
+                  shadowColor: Colors.green,
+                  shadowOffset: { width: 0, height: 3 },
+                  shadowOpacity: 0.2,
+                  shadowRadius: 3,
+                  elevation: 4,
+                }}
+              >
+                <View
+                  style={{
+                    padding: 12,
+                    backgroundColor: '#FFCC00',
+                    alignSelf: 'flex-start',
+                    borderRadius: 12,
+                  }}
+                >
+                  <Smile size={24} stroke={Colors.white} />
+                </View>
+                <RNText variant="title" size="lg">
+                  Average Mood
+                </RNText>
+                <RNText variant="header" size="3xl">
+                  6.8 <RNText variant="base">/ 10</RNText>
+                </RNText>
+                <RNText>This Month</RNText>
+              </View>
+            </View>
+            <View style={{ flexDirection: 'row', gap: 20 }}>
+              <View
+                style={{
+                  backgroundColor: Colors.white,
+                  flex: 1,
+                  padding: 20,
+                  borderRadius: 15,
+                  gap: 5,
+                  shadowColor: Colors.green,
+                  shadowOffset: { width: 0, height: 3 },
+                  shadowOpacity: 0.2,
+                  shadowRadius: 3,
+                  elevation: 4,
+                }}
+              >
+                <View
+                  style={{
+                    padding: 12,
+                    backgroundColor: '#34C759',
+                    alignSelf: 'flex-start',
+                    borderRadius: 12,
+                  }}
+                >
+                  <TrendingUp size={24} stroke={Colors.white} />
+                </View>
+                <RNText variant="title" size="lg">
+                  Mood Trend
+                </RNText>
+                <RNText variant="header" size="3xl">
+                  + 12%
+                </RNText>
+                <RNText>vs Last month</RNText>
+              </View>
+              <View
+                style={{
+                  backgroundColor: Colors.white,
+                  flex: 1,
+                  padding: 20,
+                  borderRadius: 15,
+                  gap: 5,
+                  shadowColor: Colors.green,
+                  shadowOffset: { width: 0, height: 3 },
+                  shadowOpacity: 0.2,
+                  shadowRadius: 3,
+                  elevation: 4,
+                }}
+              >
+                <View
+                  style={{
+                    padding: 12,
+                    backgroundColor: '#FF383C',
+                    alignSelf: 'flex-start',
+                    borderRadius: 12,
+                  }}
+                >
+                  <Heart size={24} stroke={Colors.white} />
+                </View>
+                <RNText variant="title" size="lg">
+                  Best Day
+                </RNText>
+                <RNText variant="header" size="3xl">
+                  Wed
+                </RNText>
+                <RNText>Avg: 8.2</RNText>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            gap: 20,
+            backgroundColor: Colors.green,
+            width: '90%',
+            marginHorizontal: 'auto',
+            padding: 24,
+            alignItems: 'center',
+            borderRadius: 20,
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 3 },
+            shadowOpacity: 0.2,
+            shadowRadius: 3,
+            elevation: 4,
+          }}
+        >
+          <View
+            style={{
+              backgroundColor: '#AFC086',
+              alignSelf: 'center',
+              paddingVertical: 16,
+              paddingHorizontal: 8,
+              borderRadius: 24,
+            }}
+          >
+            <Flame size={32} stroke={Colors.white} />
+          </View>
+          <View style={{ width: '60%', gap: 5 }}>
+            <RNText variant="medium" size="xl" style={{ color: Colors.white }}>
+              You've checked in 7 days in a row! 🎉
+            </RNText>
+            <RNText variant="medium" size="lg" style={{ color: Colors.white }}>
+              Keep up the amazing consistency !
+            </RNText>
+          </View>
+        </View>
+        <View>
+          <View
+            style={{
+              padding: 20,
+              borderRadius: 20,
+            }}
+          >
+            <Text
+              style={{
+                color: 'white',
+                fontSize: 18,
+                marginBottom: 20,
+                fontWeight: '600',
+              }}
+            >
+              Mood Summary
+            </Text>
+
+            <PieChart
+              data={pieData}
+              donut
+              focusOnPress
+              innerRadius={70}
+              radius={120}
+              showGradient
+              sectionAutoFocus
+              innerCircleColor="#0F1A45"
+              centerLabelComponent={() => {
+                return (
+                  <View style={{ alignItems: 'center' }}>
+                    <Text
+                      style={{
+                        color: 'white',
+                        fontSize: 26,
+                        fontWeight: 'bold',
+                      }}
+                    >
+                      {centerText.value}
+                    </Text>
+                    <Text
+                      style={{ color: 'white', fontSize: 14, marginTop: 4 }}
+                    >
+                      {centerText.label}
+                    </Text>
+                  </View>
+                );
+              }}
+            />
+
+            {/* Legend */}
+            <View style={{ marginTop: 25, gap: 10 }}>
+              {pieData.map((item, i) => (
+                <View
+                  key={i}
+                  style={{ flexDirection: 'row', alignItems: 'center' }}
+                >
+                  <View
+                    style={{
+                      width: 12,
+                      height: 12,
+                      borderRadius: 6,
+                      backgroundColor: item.color,
+                      marginRight: 8,
+                    }}
+                  />
+                  <Text style={{ color: 'white' }}>
+                    {item.text}: {item.value}%
+                  </Text>
+                </View>
+              ))}
+            </View>
+          </View>
+        </View>
+      </ScrollView>
+    </>
   );
 };
 
