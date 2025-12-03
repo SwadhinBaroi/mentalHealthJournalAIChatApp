@@ -6,13 +6,14 @@ import InputForm from '@/components/inputform';
 import RNButton from '@/components/ui/button';
 import { RNText } from '@/components/ui/input';
 import { Colors } from '@/constants/color';
+import { Checkbox } from 'expo-checkbox';
 import { router } from 'expo-router';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Image, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const index = () => {
+const SignUp = () => {
   const dummyForm = useForm();
   const [isChecked, setChecked] = useState(false);
   return (
@@ -55,7 +56,7 @@ const index = () => {
             size="3xl"
             style={{ textAlign: 'center', marginBottom: 20 }}
           >
-            Sign In to Mental Health
+            Sign Up For Free
           </RNText>
           <View style={{ gap: 10 }}>
             <View style={{ gap: 20 }}>
@@ -76,7 +77,7 @@ const index = () => {
                 Icon={Lock}
               />
             </View>
-            {/* <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Checkbox
                 style={{ margin: 8, borderRadius: 10 }}
                 value={isChecked}
@@ -95,7 +96,7 @@ const index = () => {
                   Tearms & Conditions
                 </RNText>
               </RNText>
-            </View> */}
+            </View>
           </View>
           <View>
             <RNButton path={'/auth/otp'} value={'Sign Up'} />
@@ -146,7 +147,7 @@ const index = () => {
               Already have an account?{' '}
             </RNText>
             <TouchableOpacity
-              onPress={() => router.replace('/auth/signup')}
+              onPress={() => router.replace('/auth')}
               style={{ alignItems: 'center', justifyContent: 'center' }}
             >
               <RNText
@@ -157,24 +158,7 @@ const index = () => {
                   textDecorationLine: 'underline',
                 }}
               >
-                Sign Up.
-              </RNText>
-            </TouchableOpacity>
-          </View>
-          <View>
-            <TouchableOpacity
-              onPress={() => router.push('/auth/forgot')}
-              style={{ alignItems: 'center', justifyContent: 'center' }}
-            >
-              <RNText
-                variant="medium"
-                size="lg"
-                style={{
-                  color: Colors.orange,
-                  textDecorationLine: 'underline',
-                }}
-              >
-                Forgot Password ?
+                Sign In.
               </RNText>
             </TouchableOpacity>
           </View>
@@ -184,4 +168,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default SignUp;

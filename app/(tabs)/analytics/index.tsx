@@ -3,42 +3,58 @@ import { RNText } from '@/components/ui/input';
 import { Colors } from '@/constants/color';
 import { Calendar, Flame, Heart, Smile, TrendingUp } from 'lucide-react-native';
 // import { Calendar, Flame } from 'lucide-react-native';
-import React from 'react';
+import Depressed from '@/assets/svgs/depressed.svg';
+import Excellent from '@/assets/svgs/excellent.svg';
+import Happy from '@/assets/svgs/happy.svg';
+import Neutral from '@/assets/svgs/neutral.svg';
+import Sad from '@/assets/svgs/sad.svg';
+import React, { useState } from 'react';
 import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { PieChart } from 'react-native-gifted-charts';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const index = () => {
+  const [selectedSlice, setSelectedSlice] = useState(null);
   const pieData = [
     {
       value: 30,
-      color: '#1E90FF', // Excellent (Blue)
-      gradientCenterColor: '#63B3FF',
+      color: '#9BB068', // Excellent (Blue)
+      gradientCenterColor: '#9BB068',
       text: 'Excellent',
+      emoji: Excellent,
+      bgColor: '#C9D2AD',
     },
     {
       value: 25,
-      color: '#4ADE80', // Happy (Green)
-      gradientCenterColor: '#9DF9B2',
+      color: '#FFCE5C', // Happy (Green)
+      gradientCenterColor: '#FFCE5C',
       text: 'Happy',
+      emoji: Happy,
+      bgColor: '#EFE497',
     },
     {
       value: 20,
-      color: '#A78BFA', // Neutral (Purple)
-      gradientCenterColor: '#D4C5FF',
+      color: '#BDA193', // Neutral (Purple)
+      gradientCenterColor: '#BDA193',
       text: 'Neutral',
+      emoji: Neutral,
+      bgColor: '#e0d6d0',
     },
     {
       value: 15,
-      color: '#F87171', // Sad (Red)
-      gradientCenterColor: '#FFB4B4',
+      color: '#FE814B', // Sad (Red)
+      gradientCenterColor: '#FE814B',
       text: 'Sad',
+      emoji: Sad,
+      bgColor: '#f2c3af',
     },
     {
       value: 10,
-      color: '#FB923C', // Depressed (Orange)
-      gradientCenterColor: '#FFBC80',
+      color: '#A18FFF', // Depressed (Orange)
+      gradientCenterColor: '#A18FFF',
       text: 'Depressed',
+      emoji: Depressed,
+      bgColor: '#d3ccf6',
     },
   ];
 
@@ -318,33 +334,32 @@ const index = () => {
             </RNText>
           </View>
         </View>
-        <View>
+        <View
+          style={{ width: '90%', marginHorizontal: 'auto', marginVertical: 40 }}
+        >
           <View
             style={{
               padding: 20,
               borderRadius: 20,
+              alignItems: 'center',
             }}
           >
-            <Text
-              style={{
-                color: 'white',
-                fontSize: 18,
-                marginBottom: 20,
-                fontWeight: '600',
-              }}
-            >
+            <RNText variant="title" size="xl" style={{ marginBottom: 30 }}>
               Mood Summary
-            </Text>
+            </RNText>
 
             <PieChart
               data={pieData}
               donut
               focusOnPress
-              innerRadius={70}
-              radius={120}
+              innerRadius={90}
+              radius={150}
               showGradient
               sectionAutoFocus
               innerCircleColor="#0F1A45"
+              onPress={(item) => {
+                setSelectedSlice(item.text);
+              }}
               centerLabelComponent={() => {
                 return (
                   <View style={{ alignItems: 'center' }}>
@@ -368,22 +383,34 @@ const index = () => {
             />
 
             {/* Legend */}
-            <View style={{ marginTop: 25, gap: 10 }}>
+            <View
+              style={{
+                marginTop: 25,
+                gap: 20,
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+              }}
+            >
               {pieData.map((item, i) => (
                 <View
                   key={i}
-                  style={{ flexDirection: 'row', alignItems: 'center' }}
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    gap: 10,
+                    borderWidth: 1,
+                    borderColor: Colors.white,
+                    padding: 15,
+                    width: '47%',
+                    borderRadius: 30,
+                    backgroundColor:
+                      selectedSlice === item.text ? item.bgColor : Colors.white,
+                  }}
                 >
-                  <View
-                    style={{
-                      width: 12,
-                      height: 12,
-                      borderRadius: 6,
-                      backgroundColor: item.color,
-                      marginRight: 8,
-                    }}
-                  />
-                  <Text style={{ color: 'white' }}>
+                  <View>
+                    <item.emoji height={24} width={24} />
+                  </View>
+                  <Text style={{ color: 'black' }}>
                     {item.text}: {item.value}%
                   </Text>
                 </View>

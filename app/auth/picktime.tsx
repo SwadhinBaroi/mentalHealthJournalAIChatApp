@@ -108,7 +108,7 @@ const PickTime = () => {
             </View>
           </View>
         </View>
-        <RNButton value={'Continue'} path={'../chat'} />
+        <RNButton value={'Continue'} path={'/(tabs)/home'} />
       </View>
     </SafeAreaView>
   );
