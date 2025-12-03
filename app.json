@@ -1,16 +1,16 @@
 {
   "expo": {
-    "name": "mentalheath",
+    "name": "Honeysuckle Trail - A Mental Health Tool",
     "slug": "mentalheath",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/uilogo.png",
     "scheme": "mentalheath",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.betopia.jvai.mentalheath"
+      "bundleIdentifier": "com.honeysuckleco.honeysuckletrail"
     },
     "android": {
       "adaptiveIcon": {
@@ -21,7 +21,7 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.betopia.jvai.mentalheath"
+      "package": "com.honeysuckleco.honeysuckletrail"
     },
     "web": {
       "output": "static",
